@@ -1,0 +1,55 @@
+program: main.py
+entity: wilderlavington
+method: grid
+project: TargetBasedSurrogateOptimization
+metric:
+  goal: minimize
+  name: grad_norm
+parameters:
+  min_epochs:
+    values:
+    - 500
+  algo:
+    values:
+    - Adam
+  normalize_epochs_lengths:
+    values:
+    - 1
+  seed:
+    values:
+    - 1
+    - 2
+    - 3
+  fullbatch:
+    values:
+    - 1
+  use_optimal_stepsize:
+    values:
+    - 0
+  log_lr:
+    values:
+    - -3.
+    - -2.
+    - -1.
+    - 0.0
+    - 1.
+    - 2.
+    - 3.
+  label:
+    values:
+    - 'svmlib'
+  loss:
+    values:
+    - MSELoss
+    - BCEWithLogitsLoss
+  dataset_name:
+    values:
+    - mushrooms
+    - ijcnn
+    - rcv1
+  c:
+    values:
+    - 0.5
+  eta_schedule:
+    values:
+    - constant

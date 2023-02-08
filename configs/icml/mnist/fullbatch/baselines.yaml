@@ -1,0 +1,47 @@
+program: main.py
+entity: wilderlavington
+method: grid
+project: TargetBasedSurrogateOptimization
+metric:
+  goal: minimize
+  name: grad_norm
+parameters:
+  min_epochs:
+    values:
+    - 500
+  algo:
+    values:
+    - LSOpt
+    - SGD
+    - Sadagrad
+    - Adam
+    - Adagrad
+  normalize_epochs_lengths:
+    values:
+    - 1
+  seed:
+    values:
+    - 1
+    - 2
+    - 3
+  fullbatch:
+    values:
+    - 1
+  use_optimal_stepsize:
+    values:
+    - 1
+  label:
+    values:
+    - 'mnist'
+  loss:
+    values:
+    - CrossEntropyLoss
+  dataset_name:
+    values:
+    - mnist
+  c:
+    values:
+    - 0.5
+  eta_schedule:
+    values:
+    - constant
