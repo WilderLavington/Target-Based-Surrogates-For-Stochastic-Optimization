@@ -46,3 +46,17 @@ wandb sweep ./configs/icml/svmlib/SGD_FMDOpt/gridsearch/constant/minibatch/funco
 
 ```
 The experiments in the appendix are also included in the configs files and you need only change the configuration folder path you are interested in to test them out.
+
+## Citation
+```
+@misc{https://doi.org/10.48550/arxiv.2302.02607,
+  doi = {10.48550/ARXIV.2302.02607},
+  url = {https://arxiv.org/abs/2302.02607},
+  author = {Lavington, Jonathan Wilder and Vaswani, Sharan and Babanezhad, Reza and Schmidt, Mark and Roux, Nicolas Le},
+  keywords = {Machine Learning (cs.LG), Optimization and Control (math.OC), FOS: Computer and information sciences, FOS: Mathematics},
+  title = {Target-based Surrogates for Stochastic Optimization},
+  publisher = {arXiv},
+  year = {2023},
+  copyright = {Creative Commons Attribution 4.0 International}
+}
+```
