@@ -24,6 +24,7 @@ from optimizers.adam_fmdopt import Adam_FMDOpt
 from optimizers.online_newton_fmdopt import Online_Newton_FMDOpt
 from optimizers.gulf2 import GULF2
 from optimizers.mirror_descent_fmdopt import MD_FMDOpt
+from optimizers.svrg import SVRG
 
 # ======================
 # set expensive to compute hyper-parameters
@@ -38,6 +39,19 @@ def load_train_args(args, model, loss_func, L, X, y):
             'total_rounds': args.epochs, 'batch_size':args.batch_size,
             'update_lr_type': args.eta_schedule, 'single_out': True,
             'normalize_training_loss': True}
+    
+    elif args.algo == 'SVRG':
+        args.stepsize = 10**args.log_lr if not args.use_optimal_stepsize else (1/L)
+        full_grad_closure = lambda : loss_func(model(X), y)
+        optim_args = {'batch_size':args.batch_size, 'lr': args.stepsize, 
+                      'n': len(y), 'full_grad_closure': full_grad_closure}
+        optim = SVRG(model.parameters(), **optim_args)
+        train_args = {'args':args, 'model':model, 'optim':optim,
+            'loss_func': loss_func, 'X':X, 'y':y, 'call_closure':True,
+            'total_rounds': args.epochs, 'batch_size':args.batch_size,
+            'update_lr_type': args.eta_schedule, 'single_out': True,
+            'normalize_training_loss': True}
+
 
     elif args.algo == 'LSOpt':
         args.stepsize = 10**args.log_lr if not args.use_optimal_stepsize else args.init_step_size

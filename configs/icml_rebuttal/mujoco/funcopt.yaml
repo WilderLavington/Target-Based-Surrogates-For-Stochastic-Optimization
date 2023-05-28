@@ -1,0 +1,59 @@
+program: mujoco/mujoco_ex.py
+entity: wilderlavington
+method: grid
+project: TargetBasedSurrogateOptimization
+metric:
+  goal: minimize
+  name: grad_norm
+parameters:
+  algo:
+    values:
+    - SSO_OGD
+    - SSO_SLS
+    - SSO_AdaOGD
+  log_lr:
+    values: 
+    # - -2.
+    # - -1.
+    - 0.0
+    # - 1.
+    # - 2.
+  model_type:
+    values:
+    # - 'nn'
+    - 'linear'
+  env_name:
+    values:
+    # - 'Hopper-v2'
+    - 'Walker2d-v2'
+  beta:
+    values:
+    - 1
+    - 0
+  beta_update:
+    values:
+    - 1
+  seed:
+    values:
+    - 1
+    - 2
+    - 3
+  m:
+    values:
+    - 1
+    - 10
+    - 100
+    - 1000 
+  label:
+    values:
+    - 'mujoco'
+  episodes:
+    values:
+    - 500
+  samples_per_update:
+    values:
+    - 1000 
+  eta_schedule:
+    values:
+    - constant
+    - stochastic
