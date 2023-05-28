@@ -22,16 +22,7 @@ parameters:
     - 3
   use_optimal_stepsize:
     values:
-    - 0
-  log_lr:
-    values:
-    - -3.
-    - -2.
-    - -1.
-    - 0.0
-    - 1.
-    - 2.
-    - 3.
+    - 1 
   batch_size:
     values: 
     - 25
@@ -40,9 +31,6 @@ parameters:
   label:
     values:
     - 'svmlib'
-  use_optimal_stepsize:
-    values:
-    - 1
   loss:
     values:
     - MSELoss

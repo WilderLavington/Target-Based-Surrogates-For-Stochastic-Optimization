@@ -47,6 +47,9 @@ class SVRG(torch.optim.Optimizer):
         with torch.no_grad():
             for i, group in enumerate(self.param_groups):
                 for j, p in enumerate(group['params']):
+                    if x_tilde[i]['params'][j].grad is None:
+                        x_tilde[i]['params'][j].grad = 0. * x_tilde[i]['params'][j].data
+                    
                     # update model parameters using SVRG update:
                     p.data = p.data - self.state['lr'] * (p.grad - x_tilde[i]['params'][j].grad + self.state['full_grad'][i][j])
 
@@ -54,7 +57,7 @@ class SVRG(torch.optim.Optimizer):
         self.state['step'] = self.state['step'] + 1
         self.x_tilde_model.zero_grad()
 
-        return x_loss, full_loss, grad_norm
+        return x_loss #, full_loss, grad_norm
 
     def _update_memory(self):
         '''

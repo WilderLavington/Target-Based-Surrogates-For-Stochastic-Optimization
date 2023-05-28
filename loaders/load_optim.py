@@ -42,10 +42,13 @@ def load_train_args(args, model, loss_func, L, X, y):
     
     elif args.algo == 'SVRG':
         args.stepsize = 10**args.log_lr if not args.use_optimal_stepsize else (1/L)
-        full_grad_closure = lambda : loss_func(model(X), y)
+        def full_grad_closure(model_):
+            loss = loss_func(model_(X.to('cuda')), y.to('cuda')) 
+            # loss.backward()
+            return loss
         optim_args = {'batch_size':args.batch_size, 'lr': args.stepsize, 
                       'n': len(y), 'full_grad_closure': full_grad_closure}
-        optim = SVRG(model.parameters(), **optim_args)
+        optim = SVRG(model, **optim_args)
         train_args = {'args':args, 'model':model, 'optim':optim,
             'loss_func': loss_func, 'X':X, 'y':y, 'call_closure':True,
             'total_rounds': args.epochs, 'batch_size':args.batch_size,

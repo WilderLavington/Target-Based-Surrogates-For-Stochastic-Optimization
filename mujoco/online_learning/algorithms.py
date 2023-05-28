@@ -313,9 +313,9 @@ class OnlineLearningAlgo():
 
             # update beta
             self.beta *= self.beta_update
-            print(self.samples)
-            print('gather_times', gather_times)
-            print('update_times', update_times)
+            # print(self.samples)
+            # print('gather_times', gather_times)
+            # print('update_times', update_times)
         # final log and display
         new_examples = self.gather_examples(self.env, self.memory, self.samples, use_expert=False)
         self.evaluate(new_examples)

@@ -8,13 +8,13 @@ metric:
 parameters:
   algo:
     values:
-    # - OGD
+    - OGD
     - AdaOGD
-    # - AdamOGD
+    - AdamOGD
     - OSLS
   log_lr:
     values:
-    # - -3.
+    - -3.
     # - -2.
     # - -1.
     - 0.0
@@ -25,7 +25,7 @@ parameters:
     - 'linear'
   env_name:
     values:
-    - 'Hopper-v2'
+    # - 'Hopper-v2'
     - 'Walker2d-v2'
   beta:
     values:
