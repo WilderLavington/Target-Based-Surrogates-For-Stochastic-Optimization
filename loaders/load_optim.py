@@ -47,7 +47,7 @@ def load_train_args(args, model, loss_func, L, X, y):
             # loss.backward()
             return loss
         optim_args = {'batch_size':args.batch_size, 'lr': args.stepsize, 
-                      'n': len(y), 'full_grad_closure': full_grad_closure}
+                      'm': int(len(y)/args.batch_size), 'full_grad_closure': full_grad_closure}
         optim = SVRG(model, **optim_args)
         train_args = {'args':args, 'model':model, 'optim':optim,
             'loss_func': loss_func, 'X':X, 'y':y, 'call_closure':True,
